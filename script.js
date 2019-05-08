@@ -18,10 +18,7 @@ createDays();
 
 
 
-function createTimeline(obj2) {
-    for (x in obj2) {
-        arr[x] = obj2[x];
-    }
+function createTimeline(arr) {
 
     sort(arr);
 
@@ -51,10 +48,10 @@ function search_arr(i, arr) {
 
 function createDays() {
     var txt;
-    for (var i = 1; i < 25; i++) {
-        txt = "<div class='tasks' ";
+    for (var i = 1; i < 26; i++) {
+        txt = "<div class='days' ";
         txt += "style='left:"
-        txt += parseFloat((i / (25)) * 100);
+        txt += parseFloat(((i-1) / (25)) * 100);
         txt += "%; "
         txt += " width:"
         txt += parseFloat(((1) / 25) * 100);
@@ -66,8 +63,8 @@ function createDays() {
         else {
             txt += "222";
         }
-        txt += "; z-index: -1; border-left:0px; border-right:0px; font-size: 15px;  top: "
-        txt += -50;
+        txt += "; z-index: -1; border-left:0px; border-right:0px; font-size: 10px;  top: "
+        txt += 0;
         txt += "px'><p>"
         txt += "2019-05-";
         txt += i ;
@@ -80,7 +77,7 @@ function createDays() {
 
 function createDiv(i, arr) {
     var p;
-    var y = 0;
+    var y = 1;
     var color;
     var border_color;
     console.log(i);
@@ -121,7 +118,8 @@ function createDiv(i, arr) {
 
     if (arr[i].parent_id == null || arr[i].parent_id == "") {
 
-        color = parseInt(Math.random() * 700) + 299;
+        color = parseInt(Math.random() * 666) + 333;
+        color = "00518c"
         if (color % 10 < 4)
             color += 4;
         if (color % 100 < 40)
@@ -130,6 +128,7 @@ function createDiv(i, arr) {
 
     } else {
         color = arr[p].color - 111;
+        color = "00778c"
     }
     arr[i].color = color;
 
@@ -142,28 +141,33 @@ function createDiv(i, arr) {
 
 
 
-    txt = "<div class='tasks' id='task";
+    txt = "<div class='tasks ";
+    if ((endt[arr[i].id] - startt[arr[i].id]) < 2)
+    txt += "short";
+    txt +="' id='task";
     txt += arr[i].id;
-    txt += "' "
-    txt += "style='left:"
+    txt += "' ";
+    txt += "style='left:";
 
-    txt += parseFloat(((startt[arr[i].id]) / (25)) * 100);
+    txt += parseFloat(((startt[arr[i].id]-1) / (25)) * 100);
 
     txt += "%; "
+    if((endt[arr[i].id] - startt[arr[i].id]) > 1){
     txt += " width:"
     txt += width;
-    txt += "%; background-color: #"
+    txt += "%;"}
+    txt +=" background-color: #"
     txt += color;
     txt += "; top: "
-    txt += 110 * y;
+    txt += 120 * y;
     txt += "px; border-bottom-color: ";
     txt += border_color;
-    if ((endt[arr[i].id] - startt[arr[i].id]) < 2) {
-        txt += "; font-size: 10px"
-    }
+    // if ((endt[arr[i].id] - startt[arr[i].id]) < 2) {
+    //     txt += "; font-size: 10px"
+    // }
     txt += "'><p>"
     txt += arr[i].name;
-    txt += "<br><br>"
+    txt += "<br>"
     txt += arr[i].assignee;
     txt += "</p></div>"
 

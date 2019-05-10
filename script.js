@@ -159,7 +159,7 @@ function createDiv(i, arr) {
     txt +=" background-color: #"
     txt += color;
     txt += "; top: "
-    txt += 120 * y;
+    txt += 90 * y;
     txt += "px; border-bottom-color: ";
     txt += border_color;
     // if ((endt[arr[i].id] - startt[arr[i].id]) < 2) {

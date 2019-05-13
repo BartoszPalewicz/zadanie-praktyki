@@ -92,7 +92,7 @@ text-decoration: none;
     text-align: center;
     opacity: 1;
     position:absolute;
-
+    height: 40px;
     font-size: 12px;
     overflow: hidden;
     
@@ -148,7 +148,7 @@ text-decoration: none;
   .short:hover{
     transition: 0.3s;
     z-index: 2;
-    width:200px;
+    height:100px;
     
   }
   .par{

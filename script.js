@@ -142,13 +142,15 @@ function createDiv(x) {
     var txt = "<div id='"
     txt+="task";
     txt+=arr[x].id
-    txt+="' class='tasks' "
-    if (arr[x].length < 3)
-        txt += "short' "
-    txt += "style='width: "
+    txt+="' class='tasks "
+    if (arr[x].length < 2)
+        txt += "short "
+    txt += "' style='width: "
     txt += arr[x].length * w;
+    if (arr[x].length > 1){
     txt += "px; height: "
     txt += (arr[x].height * h);
+    }
     txt += "px; border-bottom-color: ";
     txt += border_color;
     txt +="; left: "

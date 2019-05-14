@@ -133,46 +133,72 @@ function createDiv(x) {
     
     var border_color;
     if (arr[i].status == "new")
-        border_color = "#79ff8b"
+        border_color = "#79ff8b";
     if (arr[i].status == "pending")
-        border_color = "#ffb579"
+        border_color = "#ffb579";
     if (arr[i].status == "completed")
-        border_color = "#798bff"
+        border_color = "#798bff";
 
-    var txt = "<div id='"
-    txt+="task";
-    txt+=arr[x].id
-    txt+="' class='tasks "
+    var idName = "task"+arr[x].id;
+
+    var newDiv=document.createElement("div");
+    newDiv.setAttribute("id", idName);
+    newDiv.className = "tasks";
     if (arr[x].length < 2)
-        txt += "short "
-    txt += "' style='width: "
-    txt += arr[x].length * w;
+        newDiv.className += " short"
+    newDiv.style.width=(arr[x].length * w)+"px";
     if (arr[x].length > 1){
-    txt += "px; height: "
-    txt += (arr[x].height * h);
+    newDiv.style.height=(arr[x].height * h)+"px";
     }
-    txt += "px; border-bottom-color: ";
-    txt += border_color;
-    txt +="; left: "
+    newDiv.style.borderBottomColor=border_color;
     if(arr[x].parent_id==0){
-        txt +=(arr[x].st-1)*w}
+        newDiv.style.left=((arr[x].st-1)*w)+"px"}
     else{
-        txt+=(arr[x].st-arr[arr[x].parent_id].st)*w;
+        newDiv.style.left=((arr[x].st-arr[arr[x].parent_id].st)*w)+"px";
     }
+    newDiv.style.top=(((arr[x].y)*(h+20))+h)+"px";
 
-
-
-        txt += "px; "
-        txt += "top: "
-        txt += ((arr[x].y)*(h+20))+h;
-        txt+= "px'><p>"
-        txt+=arr[x].name;
-        txt+="</p></div>"
-        var elid="task"+arr[x].parent_id;
-        if(arr[x].parent_id==0)
+    var newParagraph = document.createElement("P");
+    newParagraph.innerHTML=arr[x].name;
+    newDiv.appendChild(newParagraph);
+    var elid="task"+arr[x].parent_id;
+    if(arr[x].parent_id==0)
         elid="task"
+    document.getElementById(elid).appendChild(newDiv);
+
+    
+
+    // var txt = "<div id='"
+    // txt+="task";
+    // txt+=arr[x].id
+    // txt+="' class='tasks "
+    // if (arr[x].length < 2)
+    //     txt += "short "
+    // txt += "' style='width: "
+    // txt += arr[x].length * w;
+    // if (arr[x].length > 1){
+    // txt += "px; height: "
+    // txt += (arr[x].height * h);
+    // }
+    // txt += "px; border-bottom-color: ";
+    // txt += border_color;
+    // txt +="; left: "
+    // if(arr[x].parent_id==0){
+    //     txt +=(arr[x].st-1)*w}
+    // else{
+    //     txt+=(arr[x].st-arr[arr[x].parent_id].st)*w;
+    // }
+    //     txt += "px; "
+    //     txt += "top: "
+    //     txt += ((arr[x].y)*(h+20))+h;
+    //     txt+= "px'><p>"
+    //     txt+=arr[x].name;
+    //     txt+="</p></div>"
+    //     var elid="task"+arr[x].parent_id;
+    //     if(arr[x].parent_id==0)
+    //     elid="task"
         
-        document.getElementById(elid).innerHTML+=txt;
+    //     document.getElementById(elid).innerHTML+=txt;
 
     for (i in arr) {
         if (arr[i].parent_id == arr[x].id) {
